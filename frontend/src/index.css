@@ -1,8 +1,14 @@
 body{
   margin: 0;
+  color: #424242;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif,;
 }
 
 code{
   font-family: 'Courier New', Courier, monospace;
+  
+}
+
+a{
+  text-decoration: none;
 }
