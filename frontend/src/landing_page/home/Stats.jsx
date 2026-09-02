@@ -40,7 +40,7 @@ function Stats() {
             style={{ width: "80%", margin: "2rem" }}
             alt=""
           />
-          <div className="text-center  ">
+          <div className="text-center ">
             <a className="me-5" href="/">
               Explore our products
               <i class="fa-solid fa-arrow-right-long"></i>

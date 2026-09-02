@@ -1,14 +1,80 @@
-body{
+body {
   margin: 0;
   color: #424242;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif,;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-code{
-  font-family: 'Courier New', Courier, monospace;
+code {
+  font-family: "Courier New", Courier, monospace;
+}
+
+a {
+  text-decoration: none;
+}
+
+.education-img {
+  width: 95%;
+}
+
+.container {
+  /* margin-top: 100px !important;*/
+  margin-bottom: 100px !important;
+}
+
+.nav-item {
+  margin-left: 15px;
+}
+.nav {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+.footer-links a {
+  text-decoration: none !important;
+  color: #424242;
+  opacity: 0.9;
+}
+
+.navbar {
+  background-color: #fff !important;
+  border-bottom: 1px solid #ebede3;
+  height: 65px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  
+}
+.home-hero{
+  margin-top: 70px;
+}
+
+.footer-paragraph{
+  opacity: 0.9;
+  margin-top: 50px;
+  font-size: 11px;
+  padding-left: 30px;
+  padding-right: 30px;
+  opacity: 0.7;
   
 }
 
-a{
-  text-decoration: none;
+.footer-body{
+  background-color: #fbfbfbfb;
+  border-top: 1px solid rgb(240, 238, 238);
+  margin: 0;
+  padding-left: 30px;
+  
+}
+
+.footer-end{
+  display:flex;
+  justify-content: space-between ;
+  align-items: center;
+  color: #9b9b9b;
+  font-size: 13px;
+  /* background-color: #424242; */
+}
+
+.footer-end-div{
+  padding: 10px 50px ;
+  color: #9b9b9b;
 }

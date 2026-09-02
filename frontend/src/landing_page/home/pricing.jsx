@@ -17,11 +17,30 @@ function Pricing() {
         <div className="col-2"></div>
         <div className="col-6">
           <div className="row">
-            <div className="col">
-              <h1>0</h1>
+            <div
+              className="col text-center"
+              style={{
+                border: "1px solid #EBEDE3",
+                height: "120px",
+                borderTopLeftRadius: "4px",
+                borderBottomLeftRadius: "4px",
+              }}
+            >
+              <h1 className="mb-2 mt-3">&#8377;0</h1>
               <p>Free account opening</p>
             </div>
-            <div className="col"></div>
+            <div
+              className="col text-center"
+              style={{
+                border: "01px solid #EBEDE3",
+                height: "120px",
+                borderTopRightRadius: "4px",
+                borderBottomRightRadius: "4px",
+              }}
+            >
+              <h1 className="mb-2 mt-3">&#8377;20</h1>
+              <p>Intraday and F&O</p>
+            </div>
           </div>
         </div>
       </div>
