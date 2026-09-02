@@ -41,40 +41,53 @@ a {
   position: sticky;
   top: 0;
   z-index: 1000;
-  
 }
-.home-hero{
+.home-hero {
   margin-top: 70px;
 }
 
-.footer-paragraph{
+.footer-paragraph {
   opacity: 0.9;
   margin-top: 50px;
   font-size: 11px;
   padding-left: 30px;
   padding-right: 30px;
   opacity: 0.7;
-  
 }
 
-.footer-body{
+.footer-body {
   background-color: #fbfbfbfb;
   border-top: 1px solid rgb(240, 238, 238);
   margin: 0;
   padding-left: 30px;
-  
 }
 
-.footer-end{
-  display:flex;
-  justify-content: space-between ;
+.footer-end {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
   color: #9b9b9b;
   font-size: 13px;
   /* background-color: #424242; */
 }
 
-.footer-end-div{
-  padding: 10px 50px ;
+.footer-end-div {
+  padding: 10px 50px;
   color: #9b9b9b;
+}
+
+.about-hero {
+  margin-top: 65px !important;
+  padding: 100px 20px;
+  margin-bottom: 0 !important;
+}
+
+.about-main-image{
+  width: 60%;
+  border-radius: 50%;
+  
+}
+.team-container{
+  margin: 130px 130px !important;
+
 }
