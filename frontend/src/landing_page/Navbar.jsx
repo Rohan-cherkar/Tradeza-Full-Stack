@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 function Navbar() {
   return (
     <nav
@@ -7,9 +8,9 @@ function Navbar() {
     >
       <div class="container-fluid row">
         <div className="col-6 ms-5 ps-3">
-          <a class="navbar-brand" href="#">
+          <Link class="navbar-brand" to="/">
             <img src="/media/images/logo.svg" alt="" style={{ width: "22%" }} />
-          </a>
+          </Link>
           <button
             class="navbar-toggler"
             type="button"
@@ -26,29 +27,29 @@ function Navbar() {
         <div class="collapse navbar-collapse col-6 ms-2" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item ">
-              <a class="nav-link" aria-current="page" href="#">
+              <Link to="/signup" class="nav-link" aria-current="page" href="#">
                 Signup
-              </a>
+              </Link>
             </li>
             <li class="nav-item ">
-              <a class="nav-link" href="#">
+              <Link to="/about" class="nav-link" href="#">
                 About
-              </a>
+              </Link>
             </li>
             <li class="nav-item ">
-              <a class="nav-link" href="#">
+              <Link to="/product" class="nav-link" href="#">
                 Products
-              </a>
+              </Link>
             </li>
             <li class="nav-item ">
-              <a class="nav-link" href="#">
+              <Link to="/pricing" class="nav-link" href="#">
                 Pricing
-              </a>
+              </Link>
             </li>
             <li class="nav-item ">
-              <a class="nav-link" href="#">
+              <Link to="/support" class="nav-link" href="#">
                 Support
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
