@@ -111,3 +111,20 @@ a {
 .universe-info{
   font-size: 0.8rem !important;
 }
+
+.support-container{
+  background-color: #f9f6f6;
+  margin-top: 65px;
+  height: 215px ;
+  padding: 40px 24px;
+}
+.support-input{
+  width: 90% !important;
+  height: 40px !important;
+  margin: 2% 1%;
+  border: transparent;
+  border: #727070 !important;
+  /* -webkit-box-shadow: 0px 2px 24px 6px rgba(0,0,0,0.39);  */
+/* box-shadow: 0px 2px 50px -1px rgba(0,0,0,0.4); */
+
+}
