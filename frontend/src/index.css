@@ -17,8 +17,10 @@ a {
 }
 
 .container {
-  /* margin-top: 100px !important;*/
-  margin-bottom: 100px !important;
+  margin-top: 75px !important;
+  /* margin-bottom: 100px !important; */
+  margin-left:75px 20% 0 20%;
+  /* margin-right:  !important; */
 }
 
 .nav-item {
@@ -90,4 +92,22 @@ a {
 .team-container{
   margin: 130px 130px !important;
 
+}
+
+.product-hero{
+  margin-top: 150px !important  ;
+  
+}
+.universe-img {
+  width: 220px;
+  height: 70px;
+}
+.universe-div{
+  height: 350;
+  width: 230;
+  margin-top: 40px;
+  margin-bottom: 50px;
+}
+.universe-info{
+  font-size: 0.8rem !important;
 }

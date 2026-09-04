@@ -1,20 +1,23 @@
 import React from "react";
+import { Link } from "react-router-dom";
 function Team() {
   return (
     <>
       <div className="container team-container">
         <div className="row">
           <h3 className="text-center mb-5">People</h3>
-          <div className="col-5 ">
+          <div className="col-5 mt-5">
             <img
               src="/media/images/Rohan.jpeg"
               alt=""
               className="about-main-image offset-3"
-            /> <br /><br />
+            />{" "}
+            <br />
+            <br />
             <h4 className="text-center ms-5">Rohan Cherkar</h4>
           </div>
           <div
-            className="col-7  pe-5"
+            className="col-7  pe-5 mt-5"
             style={{ width: "600px", color: "#3c3b3b" }}
           >
             <p>
@@ -39,6 +42,17 @@ function Team() {
               Currently, I’m looking for opportunities where I can contribute my
               skills and grow as a developer.
             </p>
+            <h5>
+              Connect on{" "}
+              <Link to="https://www.linkedin.com/in/rohan-cherkar">
+                Linkedin
+              </Link>{" "}
+              /
+              <Link to="https://www.instagram.com/iamr0han_0724?igsi=MjU5ODF1czV0eGN5&utm_source=qr">
+                &nbsp; Instagram
+              </Link>{" "}
+              /<Link to="https://github.com/Rohan-cherkar">&nbsp;Github</Link>
+            </h5>
           </div>
         </div>
       </div>

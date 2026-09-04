@@ -1,5 +1,6 @@
 import React from "react";
-function Hero() {
+import {Link} from "react-router-dom"
+ function Hero() {
   return (
     <>
       <div className="container about-hero">
@@ -45,7 +46,8 @@ function Hero() {
           </p>
           <br />
           <p>
-            Rainmatter, our fintech fund and incubator, has invested in several
+            <Link to='/'>Rainmatter</Link>
+            , our fintech fund and incubator, has invested in several
             fintech startups with the goal of growing the Indian capital
             markets.
           </p>
