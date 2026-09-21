@@ -1,23 +1,22 @@
 require("dotenv").config();
 const express = require("express");
 const app = express();
-const bodyParser=require("body-parser")
-const cors=require("cors")
+const bodyParser = require("body-parser");
+const cors = require("cors");
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
-const validateOrder =require("./Middlewares/ValidateOrders")
+const validateOrder = require("./Middlewares/ValidateOrders");
+const { requireAuth } = require("./Middlewares/AuthMiddleware");
 
 const port = process.env.PORT || 3000;
 const url = process.env.MONGO_URL;
 
-
 const authRoute = require("./Routes/AuthRoute");
 
-const  {holdingModel}  = require("./model/holdingModel");
+const { holdingModel } = require("./model/holdingModel");
 const { positionsModel } = require("./model/positionsModel");
-const  ordersModel  = require("./model/ordersModel");
+const ordersModel = require("./model/ordersModel");
 // const { ordersModel } = require("./model/ordersModel");
-
 
 const allowedOrigins = [
   "http://localhost:3000",
@@ -45,7 +44,6 @@ app.use(cookieParser());
 app.use(express.json());
 app.use("/", authRoute);
 
-
 main()
   .then(() => {
     console.log("Db Connected");
@@ -62,54 +60,77 @@ app.listen(port, () => {
   console.log("Listerning ...");
 });
 
-app.get("/allHoldings", async (req, res) => {
-  let allHoldings = await holdingModel.find({});
-  res.json(allHoldings);
-  // res.send("hello");
+app.get("/auth/verify", requireAuth, (req, res) =>
+  res.json({ user: req.user }),
+);
+
+app.get("/allHoldings", requireAuth, async (req, res) => {
+  try {
+    let allHoldings = await holdingModel.find({ user: req.user._id });
+    res.json(allHoldings);
+  } catch (err) {
+    console.error("Error fetching holdings:", err);
+    res.status(500).json({ error: "Failed to fetch holdings" });
+  }
 });
 
 app.get("/allPositions", async (req, res) => {
-  let allPositions = await positionsModel.find({});
-  res.json(allPositions);
+  try {
+    let allPositions = await positionsModel.find({});
+    res.json(allPositions);
+  } catch (err) {
+    console.error("Error fetching positions:", err);
+    res.status(500).json({ error: "Failed to fetch positions" });
+  }
 });
 
-app.post("/newOrder", validateOrder, async (req, res) => {
+app.post("/newOrder", requireAuth, validateOrder, async (req, res) => {
   try {
-    let newData = req.body;
+    const { name, price, qty, mode } = req.body;
+    const orderQty = Number(qty);
+    const orderPrice = Number(price);
 
-    let newOrder = new ordersModel({
-      name: newData.name,
-      price: newData.price,
-      qty: newData.qty,
-      mode: newData.mode,
-    });
-    await newOrder.save();
-    const orderQty = Number(newData.qty);
-    const orderPrice = Number(newData.price);
-    const mode = newData.mode;
-
-    // let holding = await holdingModel.findOne({ name: newData.name });
+    const holding = await holdingModel.findOne({ user: req.user._id, name });
 
     if (mode === "BUY") {
-      const newHolding = new holdingModel({
-        name: newData.name,
-        qty: orderQty,
-        avg: orderPrice,
-        net: "0.00%",
-        day: "0.00%",
-      });
-      await newHolding.save();
-    } else {
-      // SELL with no existing holding - invalid, nothing to sell
-      return res.status(400).send("Cannot sell a stock you don't hold");
+      if (holding) {
+        const totalQty = holding.qty + orderQty;
+        holding.avg =
+          (holding.avg * holding.qty + orderPrice * orderQty) / totalQty;
+        holding.qty = totalQty;
+        holding.price = orderPrice;
+        await holding.save();
+      } else {
+        await holdingModel.create({
+          user: req.user._id,
+          name,
+          qty: orderQty,
+          avg: orderPrice,
+          price: orderPrice,
+          net: "0.00%",
+          day: "0.00%",
+        });
+      }
     }
+    // else if (mode === "SELL") {
+    //   if (!holding || holding.qty < orderQty) {
+    //     return res.status(400).send("Not enough shares to sell");
+    //   }
+    //   holding.qty -= orderQty;
+    //   if (holding.qty === 0) await holding.deleteOne();
+    //   else await holding.save();
+    // }
 
+    await ordersModel.create({
+      user: req.user._id,
+      name,
+      price: orderPrice,
+      qty: orderQty,
+      mode,
+    });
     res.send("Order Saved");
   } catch (err) {
-    if (err.response?.status === 400) {
-      setErrors(err.response.data.errors);
-    } else {
-      console.error("Order failed:", err);
-    }
+    console.error("Order failed:", err);
+    res.status(500).send("Order failed");
   }
 });

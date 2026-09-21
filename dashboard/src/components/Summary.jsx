@@ -11,11 +11,25 @@ const formatToK = (num) => {
 
 const Summary = () => {
   const [allHoldings, setAllHoldings] = useState([]);
+  const [userName, setUserName] = useState("User");
 
   useEffect(() => {
+    try {
+      const stored = localStorage.getItem("tradeza_user");
+      if (stored) {
+        const parsed = JSON.parse(stored);
+        if (parsed?.username) setUserName(parsed.username);
+      }
+    } catch (e) {
+      console.error(e);
+    }
+
     axios
-      .get("http://localhost:3000/allHoldings")
-      .then((res) => setAllHoldings(res.data))
+      .get("http://localhost:3000/allHoldings", { withCredentials: true })
+      .then((res) => {
+        console.log("allHoldings response:", res.data);
+        setAllHoldings(Array.isArray(res.data) ? res.data : []);
+      })
       .catch((err) => console.error("Failed to fetch holdings:", err));
   }, []);
 
@@ -45,7 +59,7 @@ const Summary = () => {
   return (
     <>
       <div className="username">
-        <h6>Hi, User!</h6>
+        <h6>Hi, {userName}!</h6>
         <hr className="divider" />
       </div>
 

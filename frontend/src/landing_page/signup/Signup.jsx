@@ -34,11 +34,12 @@ function Signup() {
     }));
     if (name === "password") {
       setPasswordError(
-        value.lenght > 0 && value.length < 6
+        value.length > 0 && value.length < 6
           ? "Enter Valid Password of length 6"
           : "",
       );
     }
+
     setErrorMsg("");
   };
 

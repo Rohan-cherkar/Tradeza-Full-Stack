@@ -13,23 +13,32 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
-const ordersSchema = new Schema({
-  name: { type: String, required: true, trim: true },
-  qty: {
-    type: Number,
-    required: true,
-    min: [1, "Quantity must be at least 1"],
-    validate: {
-      validator: Number.isInteger,
-      message: "Quantity must be a whole number",
+const ordersSchema = new Schema(
+  {
+    user: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+      index: true,
     },
+    name: { type: String, required: true, trim: true },
+    qty: {
+      type: Number,
+      required: true,
+      min: [1, "Quantity must be at least 1"],
+      validate: {
+        validator: Number.isInteger,
+        message: "Quantity must be a whole number",
+      },
+    },
+    price: {
+      type: Number,
+      required: true,
+      min: [0, "Price cannot be less than 0"],
+    },
+    mode: { type: String, required: true, enum: ["BUY", "SELL"] },
   },
-  price: {
-    type: Number,
-    required: true,
-    min: [0, "Price cannot be less than 0"],
-  },
-  mode: { type: String, required: true, enum: ["BUY", "SELL"] },
-});
+  { timestamps: true },
+);
 
 module.exports = { ordersSchema };

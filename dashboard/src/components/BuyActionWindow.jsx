@@ -52,12 +52,16 @@ const BuyActionWindow = ({ uid }) => {
     if (Object.keys(validationErrors).length > 0) return;
 
     try {
-      await axios.post("http://localhost:3000/newOrder", {
-        name: uid,
-        qty: Number(stockQuantity),
-        price: Number(stockPrice),
-        mode: "BUY",
-      });
+      await axios.post(
+        "http://localhost:3000/newOrder",
+        {
+          name: uid,
+          qty: Number(stockQuantity),
+          price: Number(stockPrice),
+          mode: "BUY",
+        },
+        { withCredentials: true },
+      );
       generalContext.closeBuyWindow();
     } catch (err) {
       console.error("Order failed:", err);
