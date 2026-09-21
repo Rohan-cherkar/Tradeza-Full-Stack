@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-function Signup() {
+function Login() {
   const [inputValue, setInputValue] = useState({
-    username: "",
     email: "",
     password: "",
   });
@@ -11,9 +10,8 @@ function Signup() {
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
   const [successMsg, setSuccessMsg] = useState("");
-  const [passwordError, setPasswordError] = useState("");
 
-  const { username, email, password } = inputValue;
+  const { email, password } = inputValue;
 
   useEffect(() => {
     const stored = localStorage.getItem("tradeza_user");
@@ -32,20 +30,13 @@ function Signup() {
       ...prev,
       [name]: value,
     }));
-    if (name === "password") {
-      setPasswordError(
-        value.lenght > 0 && value.length < 6
-          ? "Enter Valid Password of length 6"
-          : "",
-      );
-    }
     setErrorMsg("");
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!username || !email || !password || password.length < 6) {
-      setErrorMsg("Please fill in all fields Correctly");
+    if (!email || !password) {
+      setErrorMsg("Please enter both email and password.");
       return;
     }
 
@@ -54,33 +45,33 @@ function Signup() {
     setSuccessMsg("");
 
     try {
-      const response = await fetch("http://localhost:3000/signup", {
+      const response = await fetch("http://localhost:3000/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         credentials: "include",
-        body: JSON.stringify({ username, email, password }),
+        body: JSON.stringify({ email, password }),
       });
 
       const data = await response.json();
 
       if (data.success) {
-        const signedUpUser = data.user || {
-          username: username,
+        const loggedInUser = data.user || {
+          username: email.split("@")[0],
           email: email,
         };
-        localStorage.setItem("tradeza_user", JSON.stringify(signedUpUser));
+        localStorage.setItem("tradeza_user", JSON.stringify(loggedInUser));
         window.dispatchEvent(new Event("storage"));
-        setCurrentUser(signedUpUser);
-        setSuccessMsg(data.message || "Account created successfully!");
+        setCurrentUser(loggedInUser);
+        setSuccessMsg(data.message || "Logged in successfully!");
       } else {
-        setErrorMsg(data.message || "Signup failed. Please try again.");
+        setErrorMsg(data.message || "Invalid credentials. Please try again.");
       }
     } catch (err) {
       console.error(err);
       setErrorMsg(
-        "Unable to connect to the server. Please ensure the backend is running.",
+        "Unable to connect to the server. Please ensure the backend is running."
       );
     } finally {
       setLoading(false);
@@ -137,9 +128,9 @@ function Signup() {
             ) : (
               <>
                 <div className="text-center mb-4">
-                  <h2 className="fw-bold mb-1">Open Tradeza Account</h2>
+                  <h2 className="fw-bold mb-1">Login to Tradeza</h2>
                   <p className="text-muted">
-                    Sign up now to start investing & trading
+                    Access your trading dashboard and portfolio
                   </p>
                 </div>
 
@@ -157,26 +148,6 @@ function Signup() {
 
                 <form onSubmit={handleSubmit}>
                   <div className="mb-3">
-                    <label
-                      className="form-label fw-semibold"
-                      htmlFor="username"
-                    >
-                      Full Name / Username
-                    </label>
-                    <input
-                      type="text"
-                      id="username"
-                      name="username"
-                      value={username}
-                      onChange={handleOnChange}
-                      placeholder="e.g. Rohan Cherkar"
-                      className="form-control form-control-lg"
-                      required
-                      autoFocus
-                    />
-                  </div>
-
-                  <div className="mb-3">
                     <label className="form-label fw-semibold" htmlFor="email">
                       Email address
                     </label>
@@ -189,14 +160,12 @@ function Signup() {
                       placeholder="e.g. rohan@tradeza.com"
                       className="form-control form-control-lg"
                       required
+                      autoFocus
                     />
                   </div>
 
                   <div className="mb-4">
-                    <label
-                      className="form-label fw-semibold"
-                      htmlFor="password"
-                    >
+                    <label className="form-label fw-semibold" htmlFor="password">
                       Password
                     </label>
                     <input
@@ -205,16 +174,10 @@ function Signup() {
                       name="password"
                       value={password}
                       onChange={handleOnChange}
-                      placeholder="Create a strong password"
+                      placeholder="Enter your password"
                       className="form-control form-control-lg"
-                      aria-invalid={!!passwordError}
-                      aria-describedby="password-error"
+                      required
                     />
-                    {passwordError && (
-                      <small id="password-error" className="auth-error">
-                        {passwordError}
-                      </small>
-                    )}
                   </div>
 
                   <button
@@ -222,15 +185,15 @@ function Signup() {
                     disabled={loading}
                     className="btn btn-primary w-100 py-2 fs-5 fw-semibold"
                   >
-                    {loading ? "Creating account..." : "Sign Up"}
+                    {loading ? "Logging in..." : "Login"}
                   </button>
                 </form>
 
                 <div className="text-center mt-4 pt-2 border-top">
                   <p className="text-muted mb-0">
-                    Already have an account?{" "}
-                    <Link to="/login" className="fw-semibold text-primary">
-                      Log in
+                    Don't have an account?{" "}
+                    <Link to="/signup" className="fw-semibold text-primary">
+                      Sign up for free
                     </Link>
                   </p>
                 </div>
@@ -243,4 +206,4 @@ function Signup() {
   );
 }
 
-export default Signup;
+export default Login;

@@ -18,9 +18,8 @@ a {
 
 .container {
   margin-top: 75px !important;
-  /* margin-bottom: 100px !important; */
-  margin-left:75px 20% 0 20%;
-  /* margin-right:  !important; */
+  margin-left: auto !important;
+  margin-right: auto !important;
 }
 
 .nav-item {
@@ -39,7 +38,7 @@ a {
 .navbar {
   background-color: #fff !important;
   border-bottom: 1px solid #ebede3;
-  height: 65px;
+  min-height: 65px;
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -70,7 +69,6 @@ a {
   align-items: center;
   color: #9b9b9b;
   font-size: 13px;
-  /* background-color: #424242; */
 }
 
 .footer-end-div {
@@ -87,16 +85,13 @@ a {
 .about-main-image{
   width: 60%;
   border-radius: 50%;
-  
 }
 .team-container{
   margin: 130px 130px !important;
-
 }
 
 .product-hero{
-  margin-top: 150px !important  ;
-  
+  margin-top: 150px !important;
 }
 .universe-img {
   width: 220px;
@@ -115,7 +110,7 @@ a {
 .support-container{
   background-color: #f9f6f6;
   margin-top: 65px;
-  height: 215px ;
+  height: 215px;
   padding: 40px 24px;
 }
 .support-input{
@@ -124,7 +119,50 @@ a {
   margin: 2% 1%;
   border: transparent;
   border: #727070 !important;
-  /* -webkit-box-shadow: 0px 2px 24px 6px rgba(0,0,0,0.39);  */
-/* box-shadow: 0px 2px 50px -1px rgba(0,0,0,0.4); */
+}
 
+/* Buy Stocks & Dashboard Navigation Styles */
+.buy-stocks-btn {
+  background-color: #f0f7ff;
+  border: 1px solid #387ed1;
+  color: #387ed1;
+  border-radius: 4px;
+  transition: all 0.2s ease-in-out;
+}
+
+.buy-stocks-btn:hover {
+  background-color: #387ed1;
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(56, 126, 209, 0.3);
+}
+
+.dashboard-nav-btn {
+  background-color: #387ed1;
+  border-color: #387ed1;
+  border-radius: 4px;
+  font-weight: 600;
+  transition: all 0.2s ease-in-out;
+}
+
+.dashboard-nav-btn:hover {
+  background-color: #2a6cb8;
+  border-color: #2a6cb8;
+  box-shadow: 0 2px 8px rgba(42, 108, 184, 0.35);
+}
+
+/* Auth Pages Styling */
+.auth-page-container {
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+.auth-card {
+  background: #ffffff;
+  border: 1px solid #eaeaea;
+  border-radius: 8px;
+}
+
+.auth-card input:focus {
+  border-color: #387ed1;
+  box-shadow: 0 0 0 0.25rem rgba(56, 126, 209, 0.2);
 }

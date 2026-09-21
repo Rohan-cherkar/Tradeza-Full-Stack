@@ -12,6 +12,7 @@ const Signup = () => {
     username: "",
   });
   const [loading, setLoading] = useState(false);
+  const [passwordError, setPasswordError] = useState("");
 
   const { email, password, username } = inputValue;
 
@@ -21,6 +22,13 @@ const Signup = () => {
       ...inputValue,
       [name]: value,
     });
+    if (name === "password") {
+      setPasswordError(
+        value.length > 0 && value.length < 6
+          ? "Password length must be grater than 6"
+          : "",
+      );
+    }
   };
 
   const handleError = (err) =>
@@ -37,7 +45,7 @@ const Signup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!email || !password || !username) {
+    if (!email || !password || password.length < 6 || !username) {
       handleError("Please fill in all fields");
       return;
     }
@@ -49,7 +57,7 @@ const Signup = () => {
         {
           ...inputValue,
         },
-        { withCredentials: true }
+        { withCredentials: true },
       );
       const { success, message, user } = data;
       if (success) {
@@ -69,7 +77,8 @@ const Signup = () => {
     } catch (error) {
       console.error(error);
       handleError(
-        error.response?.data?.message || "Failed to create account. Please check server."
+        error.response?.data?.message ||
+          "Failed to create account. Please check server.",
       );
     } finally {
       setLoading(false);
@@ -122,15 +131,17 @@ const Signup = () => {
               value={password}
               placeholder="Choose a strong password"
               onChange={handleOnChange}
-              required
+              aria-invalid={!!passwordError}
+              aria-describedby="password-error"
             />
+            {passwordError && (
+              <small id="password-error" className="auth-error">
+                {passwordError}
+              </small>
+            )}
           </div>
 
-          <button
-            type="submit"
-            className="auth-submit-btn"
-            disabled={loading}
-          >
+          <button type="submit" className="auth-submit-btn" disabled={loading}>
             {loading ? "Creating account..." : "Continue"}
           </button>
 
