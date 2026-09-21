@@ -4,6 +4,7 @@ import { useCookies } from "react-cookie";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 
+
 const Auth = () => {
   const navigate = useNavigate();
   const [cookies, removeCookie] = useCookies([]);

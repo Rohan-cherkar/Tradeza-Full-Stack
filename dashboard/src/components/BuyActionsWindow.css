@@ -219,3 +219,14 @@
     color: #fff;
   }
   
+  .error-text {
+  color: #e53935;
+  font-size: 0.7rem;
+  display: block;
+  margin-top: 2px;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

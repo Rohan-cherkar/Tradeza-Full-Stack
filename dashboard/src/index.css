@@ -842,5 +842,371 @@ hr {
   background-color: rgb(212, 212, 212);
 }
 
+/* =========================================
+   Zerodha Kite Style - Profile Dropdown
+   ========================================= */
+.profile-wrapper {
+  position: relative;
+  display: inline-block;
+}
 
+.profile-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 14px);
+  right: 0;
+  width: 270px;
+  background-color: #ffffff;
+  border-radius: 6px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.08);
+  border: 1px solid #eaeaea;
+  z-index: 1000;
+  padding: 16px 0 8px 0;
+  animation: dropdownFadeIn 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-origin: top right;
+}
 
+@keyframes dropdownFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.dropdown-user-header {
+  display: flex;
+  align-items: center;
+  padding: 0 18px 12px 18px;
+}
+
+.dropdown-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #fbf0ea;
+  color: #f56834;
+  font-weight: 600;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 12px;
+  flex-shrink: 0;
+  border: 1px solid #fedcd0;
+}
+
+.dropdown-user-info h4 {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #333333;
+  line-height: 1.2;
+}
+
+.dropdown-user-info p {
+  margin: 3px 0 0 0;
+  font-size: 0.75rem;
+  color: #888888;
+  word-break: break-all;
+}
+
+.dropdown-divider {
+  height: 1px;
+  background-color: #f0f0f0;
+  margin: 6px 0;
+}
+
+.dropdown-links {
+  list-style: none;
+  margin: 0;
+  padding: 4px 0;
+}
+
+.dropdown-links li a {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  font-size: 0.85rem;
+  color: #444444;
+  text-decoration: none;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.dropdown-links li a:hover {
+  background-color: #f8f9fa;
+  color: #f56834;
+}
+
+.dropdown-footer {
+  padding: 8px 18px 4px 18px;
+}
+
+.dropdown-logout-btn {
+  width: 100%;
+  padding: 9px 12px;
+  background-color: #fef2f0;
+  color: #e53935;
+  border: 1px solid #fcdad7;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.dropdown-logout-btn:hover {
+  background-color: #e53935;
+  color: #ffffff;
+}
+
+.dropdown-guest-box {
+  padding: 16px 18px 8px 18px;
+  text-align: center;
+}
+
+.dropdown-guest-header h4 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.dropdown-guest-header p {
+  margin: 4px 0 16px 0;
+  font-size: 0.78rem;
+  color: #777;
+}
+
+.dropdown-auth-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.dropdown-btn-primary {
+  flex: 1;
+  padding: 9px 0;
+  background-color: #387ed1;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-align: center;
+  transition: background-color 0.2s;
+}
+
+.dropdown-btn-primary:hover {
+  background-color: #2b67ad;
+}
+
+.dropdown-btn-secondary {
+  flex: 1;
+  padding: 9px 0;
+  background-color: #ffffff;
+  color: #444444;
+  border: 1px solid #d5d5d5;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-align: center;
+  transition: all 0.2s;
+}
+
+.dropdown-btn-secondary:hover {
+  border-color: #999;
+  background-color: #fafafa;
+}
+
+/* =========================================
+   Zerodha Kite Style - Auth Pages (Login / Signup)
+   ========================================= */
+.auth-wrapper {
+  min-height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #fbfbfb;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  box-sizing: border-box;
+  padding: 30px 15px;
+}
+
+.auth-container {
+  width: 100%;
+  max-width: 390px;
+  background: #ffffff;
+  border: 1px solid #e2e2e2;
+  border-radius: 6px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  padding: 38px 34px;
+  box-sizing: border-box;
+}
+
+.auth-logo-section {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.auth-logo {
+  width: 52px;
+  height: auto;
+  margin-bottom: 14px;
+}
+
+.auth-title {
+  margin: 0;
+  font-size: 1.45rem;
+  font-weight: 500;
+  color: #424242;
+  letter-spacing: -0.3px;
+}
+
+.auth-subtitle {
+  margin: 6px 0 0 0;
+  font-size: 0.85rem;
+  color: #888888;
+  font-weight: 400;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.auth-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.auth-form-group label {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #555555;
+}
+
+.auth-label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.auth-form-group input {
+  width: 100%;
+  box-sizing: border-box;
+  height: 42px;
+  padding: 0 12px;
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  color: #333333;
+  outline: none;
+  background: #ffffff;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.auth-form-group input:focus {
+  border-color: #387ed1;
+  box-shadow: 0 0 0 2px rgba(56, 126, 209, 0.15);
+}
+
+.auth-form-group input::placeholder {
+  color: #bbbbbb;
+  font-size: 0.85rem;
+}
+
+.auth-submit-btn {
+  width: 100%;
+  height: 44px;
+  background-color: #ff5722;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: 4px;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.auth-submit-btn:hover {
+  background-color: #f4511e;
+}
+
+.auth-submit-btn:active {
+  transform: scale(0.99);
+}
+
+.auth-submit-btn:disabled {
+  background-color: #ffab91;
+  cursor: not-allowed;
+}
+
+.auth-divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 6px 0 0 0;
+  color: #cccccc;
+}
+
+.auth-divider::before,
+.auth-divider::after {
+  content: "";
+  flex: 1;
+  border-bottom: 1px solid #ebebeb;
+}
+
+.auth-divider span {
+  padding: 0 10px;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: #aaaaaa;
+}
+
+.auth-footer-link {
+  text-align: center;
+  font-size: 0.85rem;
+  color: #666666;
+  margin-top: 2px;
+}
+
+.auth-highlight-link {
+  color: #387ed1;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.15s ease;
+}
+
+.auth-highlight-link:hover {
+  color: #245899;
+  text-decoration: underline;
+}
+
+.auth-link-subtle {
+  font-size: 0.75rem;
+  color: #387ed1;
+  text-decoration: none;
+}
+
+.auth-link-subtle:hover {
+  text-decoration: underline;
+}
+
+.auth-page-footer {
+  margin-top: 28px;
+  text-align: center;
+}
+
+.auth-page-footer p {
+  font-size: 0.78rem;
+  color: #9e9e9e;
+  margin: 0;
+}
