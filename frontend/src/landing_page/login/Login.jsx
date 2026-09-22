@@ -112,7 +112,7 @@ function Login() {
 
                 <div className="d-grid gap-3">
                   <a
-                    href=`${import.meta.env.VITE_DASHBOARD_URL}`
+                    href={import.meta.env.VITE_DASHBOARD_URL}
                     className="btn btn-primary btn-lg fw-semibold"
                   >
                     Go to Dashboard &rarr;
