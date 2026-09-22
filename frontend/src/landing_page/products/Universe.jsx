@@ -1,5 +1,5 @@
 import React from "react";
-import UniverseLogo from "./universeLogo";
+import UniverseLogo from "./UniverseLogo";
 function Universe() {
   return (
     <>
