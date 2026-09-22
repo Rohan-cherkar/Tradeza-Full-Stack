@@ -55,7 +55,7 @@ function Signup() {
     setSuccessMsg("");
 
     try {
-      const response = await fetch("http://localhost:3000/signup", {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/signup`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -122,7 +122,7 @@ function Signup() {
 
                 <div className="d-grid gap-3">
                   <a
-                    href="http://localhost:3001"
+                    href="http://localhost:3001" //here the hardcoaded  api is present
                     className="btn btn-primary btn-lg fw-semibold"
                   >
                     Go to Dashboard &rarr;
