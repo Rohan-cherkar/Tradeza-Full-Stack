@@ -1,8 +1,168 @@
-body{
+body {
   margin: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif,;
+  color: #424242;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-code{
-  font-family: 'Courier New', Courier, monospace;
+code {
+  font-family: "Courier New", Courier, monospace;
+}
+
+a {
+  text-decoration: none;
+}
+
+.education-img {
+  width: 95%;
+}
+
+.container {
+  margin-top: 75px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.nav-item {
+  margin-left: 15px;
+}
+.nav {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+.footer-links a {
+  text-decoration: none !important;
+  color: #424242;
+  opacity: 0.9;
+}
+
+.navbar {
+  background-color: #fff !important;
+  border-bottom: 1px solid #ebede3;
+  min-height: 65px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+.home-hero {
+  margin-top: 70px;
+}
+
+.footer-paragraph {
+  opacity: 0.9;
+  margin-top: 50px;
+  font-size: 11px;
+  padding-left: 30px;
+  padding-right: 30px;
+  opacity: 0.7;
+}
+
+.footer-body {
+  background-color: #fbfbfbfb;
+  border-top: 1px solid rgb(240, 238, 238);
+  margin: 0;
+  padding-left: 30px;
+}
+
+.footer-end {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #9b9b9b;
+  font-size: 13px;
+}
+
+.footer-end-div {
+  padding: 10px 50px;
+  color: #9b9b9b;
+}
+
+.about-hero {
+  margin-top: 65px !important;
+  padding: 100px 20px;
+  margin-bottom: 0 !important;
+}
+
+.about-main-image{
+  width: 60%;
+  border-radius: 50%;
+}
+.team-container{
+  margin: 130px 130px !important;
+}
+
+.product-hero{
+  margin-top: 150px !important;
+}
+.universe-img {
+  width: 220px;
+  height: 70px;
+}
+.universe-div{
+  height: 350;
+  width: 230;
+  margin-top: 40px;
+  margin-bottom: 50px;
+}
+.universe-info{
+  font-size: 0.8rem !important;
+}
+
+.support-container{
+  background-color: #f9f6f6;
+  margin-top: 65px;
+  height: 215px;
+  padding: 40px 24px;
+}
+.support-input{
+  width: 90% !important;
+  height: 40px !important;
+  margin: 2% 1%;
+  border: transparent;
+  border: #727070 !important;
+}
+
+/* Buy Stocks & Dashboard Navigation Styles */
+.buy-stocks-btn {
+  background-color: #f0f7ff;
+  border: 1px solid #387ed1;
+  color: #387ed1;
+  border-radius: 4px;
+  transition: all 0.2s ease-in-out;
+}
+
+.buy-stocks-btn:hover {
+  background-color: #387ed1;
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(56, 126, 209, 0.3);
+}
+
+.dashboard-nav-btn {
+  background-color: #387ed1;
+  border-color: #387ed1;
+  border-radius: 4px;
+  font-weight: 600;
+  transition: all 0.2s ease-in-out;
+}
+
+.dashboard-nav-btn:hover {
+  background-color: #2a6cb8;
+  border-color: #2a6cb8;
+  box-shadow: 0 2px 8px rgba(42, 108, 184, 0.35);
+}
+
+/* Auth Pages Styling */
+.auth-page-container {
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+.auth-card {
+  background: #ffffff;
+  border: 1px solid #eaeaea;
+  border-radius: 8px;
+}
+
+.auth-card input:focus {
+  border-color: #387ed1;
+  box-shadow: 0 0 0 0.25rem rgba(56, 126, 209, 0.2);
 }
