@@ -49,7 +49,6 @@ app.set("trust proxy", 1);
 app.use(
   cors({
     origin: function (origin, callback) {
-      if (!origin || allowedOrigins.indexOf(origin) !== -1) {
       if (
         !origin ||
         allowedOrigins.indexOf(origin) !== -1 ||
@@ -64,6 +63,7 @@ app.use(
     credentials: true,
   }),
 );
+
 
 app.use(cookieParser());
 app.use(express.json());
