@@ -19,6 +19,7 @@ const ordersModel = require("./model/ordersModel");
 // const { ordersModel } = require("./model/ordersModel");
 
 const allowedOrigins = [
+  "https://zerodha-clone-full-stack.vercel.app/",
   "http://localhost:3000",
   "http://localhost:3001",
   "http://localhost:5173",
