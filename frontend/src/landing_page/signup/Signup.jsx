@@ -122,7 +122,7 @@ function Signup() {
 
                 <div className="d-grid gap-3">
                   <a
-                    href="http://localhost:3001" //here the hardcoaded  api is present
+                    href={import.meta.env.VITE_DASHBOARD_URL} //here the hardcoaded  api is present
                     className="btn btn-primary btn-lg fw-semibold"
                   >
                     Go to Dashboard &rarr;
