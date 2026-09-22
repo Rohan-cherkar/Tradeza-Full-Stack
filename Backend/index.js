@@ -20,6 +20,8 @@ const ordersModel = require("./model/ordersModel");
 
 const allowedOrigins = [
   "https://zerodha-clone-full-stack.vercel.app/",
+  "https://zerodha-clone-full-stack.vercel.app",
+  "https://tradeza-full-stack.vercel.app",
   "http://localhost:3000",
   "http://localhost:3001",
   "http://localhost:5173",
@@ -28,10 +30,31 @@ const allowedOrigins = [
   "http://127.0.0.1:5173",
 ];
 
+if (process.env.FRONTEND_URL) {
+  allowedOrigins.push(process.env.FRONTEND_URL.replace(/\/$/, ""));
+}
+if (process.env.DASHBOARD_URL) {
+  allowedOrigins.push(process.env.DASHBOARD_URL.replace(/\/$/, ""));
+}
+if (process.env.ALLOWED_ORIGINS) {
+  process.env.ALLOWED_ORIGINS.split(",").forEach((origin) => {
+    const clean = origin.trim().replace(/\/$/, "");
+    if (clean && !allowedOrigins.includes(clean)) allowedOrigins.push(clean);
+  });
+}
+
+// Trust reverse proxy for HTTPS cookie handling on Render
+app.set("trust proxy", 1);
+
 app.use(
   cors({
     origin: function (origin, callback) {
       if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+      if (
+        !origin ||
+        allowedOrigins.indexOf(origin) !== -1 ||
+        origin.endsWith(".vercel.app")
+      ) {
         callback(null, true);
       } else {
         callback(null, true);
@@ -41,6 +64,7 @@ app.use(
     credentials: true,
   }),
 );
+
 app.use(cookieParser());
 app.use(express.json());
 app.use("/", authRoute);

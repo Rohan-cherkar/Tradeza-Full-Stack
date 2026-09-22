@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { API_URL, DASHBOARD_URL } from "../../config";
 
 function Login() {
   const [inputValue, setInputValue] = useState({
@@ -45,7 +46,7 @@ function Login() {
     setSuccessMsg("");
 
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/login`, {
+      const response = await fetch(`${API_URL}/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -62,6 +63,9 @@ function Login() {
           email: email,
         };
         localStorage.setItem("tradeza_user", JSON.stringify(loggedInUser));
+        if (data.token) {
+          localStorage.setItem("tradeza_token", data.token);
+        }
         window.dispatchEvent(new Event("storage"));
         setCurrentUser(loggedInUser);
         setSuccessMsg(data.message || "Logged in successfully!");
@@ -71,7 +75,7 @@ function Login() {
     } catch (err) {
       console.error(err);
       setErrorMsg(
-        "Unable to connect to the server. Please ensure the backend is running."
+        "Unable to connect to the server. Please ensure the backend is running.",
       );
     } finally {
       setLoading(false);
@@ -80,6 +84,7 @@ function Login() {
 
   const handleLogout = () => {
     localStorage.removeItem("tradeza_user");
+    localStorage.removeItem("tradeza_token");
     document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     setCurrentUser(null);
     setSuccessMsg("");
@@ -112,7 +117,7 @@ function Login() {
 
                 <div className="d-grid gap-3">
                   <a
-                    href={import.meta.env.VITE_DASHBOARD_URL}
+                    href={DASHBOARD_URL}
                     className="btn btn-primary btn-lg fw-semibold"
                   >
                     Go to Dashboard &rarr;
@@ -165,7 +170,10 @@ function Login() {
                   </div>
 
                   <div className="mb-4">
-                    <label className="form-label fw-semibold" htmlFor="password">
+                    <label
+                      className="form-label fw-semibold"
+                      htmlFor="password"
+                    >
                       Password
                     </label>
                     <input

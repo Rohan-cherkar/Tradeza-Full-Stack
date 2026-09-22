@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { VerticalGraph } from "./VerticalGraph";
+import { API_URL } from "../config";
 
 const Holdings = () => {
   const [allHoldings, setAllHoldings] = useState([]);
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/allHoldings", { withCredentials: true })
+      .get(`${API_URL}/allHoldings`, { withCredentials: true })
       .then((res) => setAllHoldings(Array.isArray(res.data) ? res.data : []))
       .catch((err) => console.error("Failed to fetch holdings:", err));
   }, []); // <-- empty array = run once on mount

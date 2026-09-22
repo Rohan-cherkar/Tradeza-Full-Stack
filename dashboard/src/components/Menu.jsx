@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { API_URL } from "../config";
 
 const Menu = () => {
   const [selectedMenu, setSelectedMenu] = useState(0);
@@ -31,10 +32,11 @@ const Menu = () => {
     const verifyUser = async () => {
       try {
         const { data } = await axios.post(
-          "http://localhost:3000",
+          API_URL,
           {},
           { withCredentials: true },
         );
+
         if (data.status && data.user) {
           const updatedUser = {
             username: data.user,

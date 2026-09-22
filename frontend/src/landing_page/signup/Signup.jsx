@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { API_URL, DASHBOARD_URL } from "../../config";
 
 function Signup() {
   const [inputValue, setInputValue] = useState({
@@ -39,7 +40,6 @@ function Signup() {
           : "",
       );
     }
-
     setErrorMsg("");
   };
 
@@ -55,7 +55,7 @@ function Signup() {
     setSuccessMsg("");
 
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/signup`, {
+      const response = await fetch(`${API_URL}/signup`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -72,6 +72,9 @@ function Signup() {
           email: email,
         };
         localStorage.setItem("tradeza_user", JSON.stringify(signedUpUser));
+        if (data.token) {
+          localStorage.setItem("tradeza_token", data.token);
+        }
         window.dispatchEvent(new Event("storage"));
         setCurrentUser(signedUpUser);
         setSuccessMsg(data.message || "Account created successfully!");
@@ -90,6 +93,7 @@ function Signup() {
 
   const handleLogout = () => {
     localStorage.removeItem("tradeza_user");
+    localStorage.removeItem("tradeza_token");
     document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     setCurrentUser(null);
     setSuccessMsg("");
@@ -122,7 +126,7 @@ function Signup() {
 
                 <div className="d-grid gap-3">
                   <a
-                    href={import.meta.env.VITE_DASHBOARD_URL} // here the hardcoded url is present
+                    href={DASHBOARD_URL}
                     className="btn btn-primary btn-lg fw-semibold"
                   >
                     Go to Dashboard &rarr;

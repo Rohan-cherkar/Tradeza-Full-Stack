@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
-
+import { API_URL } from "../config";
 
 const Auth = () => {
   const navigate = useNavigate();
@@ -14,11 +14,8 @@ const Auth = () => {
       if (!cookies.token) {
         navigate("/login");
       }
-      const { data } = await axios.post(
-        "http://localhost:3000",
-        {},
-        { withCredentials: true },
-      );
+      const { data } = await axios.post(API_URL, {}, { withCredentials: true });
+
       const { status, user } = data;
       setUsername(user);
       return status

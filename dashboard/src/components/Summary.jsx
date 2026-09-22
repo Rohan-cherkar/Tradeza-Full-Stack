@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { API_URL } from "../config";
 
 // Helper: formats a number into "1.55k" / "29,875" style short form
 const formatToK = (num) => {
@@ -25,7 +26,7 @@ const Summary = () => {
     }
 
     axios
-      .get("http://localhost:3000/allHoldings", { withCredentials: true })
+      .get(`${API_URL}/allHoldings`, { withCredentials: true })
       .then((res) => {
         console.log("allHoldings response:", res.data);
         setAllHoldings(Array.isArray(res.data) ? res.data : []);

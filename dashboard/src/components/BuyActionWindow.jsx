@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import GeneralContext from "./GeneralContext";
 import "./BuyActionsWindow.css";
+import { API_URL } from "../config";
 
 const validate = (qty, price) => {
   const errors = {};
@@ -53,7 +54,7 @@ const BuyActionWindow = ({ uid }) => {
 
     try {
       await axios.post(
-        "http://localhost:3000/newOrder",
+        `${API_URL}/newOrder`,
         {
           name: uid,
           qty: Number(stockQuantity),
@@ -62,6 +63,7 @@ const BuyActionWindow = ({ uid }) => {
         },
         { withCredentials: true },
       );
+
       generalContext.closeBuyWindow();
     } catch (err) {
       console.error("Order failed:", err);

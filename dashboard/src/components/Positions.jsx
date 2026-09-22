@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { API_URL } from "../config";
 
 const Positions = () => {
   const [allPosition, setAllPosition] = useState([]);
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/allPositions") // confirm this matches your backend's actual port
+      .get(`${API_URL}/allPositions`)
       .then((res) => {
         setAllPosition(Array.isArray(res.data) ? res.data : []);
       })
+
       .catch((err) => {
         console.error("Failed to fetch positions:", err);
         setAllPosition([]);

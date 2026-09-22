@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { API_URL } from "../config";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -53,12 +54,13 @@ const Signup = () => {
     setLoading(true);
     try {
       const { data } = await axios.post(
-        "http://localhost:3000/signup",
+        `${API_URL}/signup`,
         {
           ...inputValue,
         },
         { withCredentials: true },
       );
+
       const { success, message, user } = data;
       if (success) {
         handleSuccess(message || "Signup successful!");

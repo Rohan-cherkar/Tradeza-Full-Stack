@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { DASHBOARD_URL } from "../config";
 
 function Navbar() {
   const [user, setUser] = useState(null);
@@ -70,7 +71,7 @@ function Navbar() {
             {/* Buy Stocks Action Button */}
             <li className="nav-item my-1 my-lg-0 me-lg-2">
               <a
-                href="http://localhost:3001"
+                href={DASHBOARD_URL}
                 className="btn btn-outline-primary btn-sm px-3 py-1 fw-bold d-flex align-items-center gap-1 buy-stocks-btn"
                 title="Open Trading Dashboard to Buy/Sell Stocks"
               >
@@ -105,17 +106,22 @@ function Navbar() {
               <>
                 <li className="nav-item my-1 my-lg-0 ms-lg-2">
                   <a
-                    href="http://localhost:3001"
+                    href={DASHBOARD_URL}
                     className="btn btn-primary btn-sm px-3 py-1 fw-semibold dashboard-nav-btn"
                   >
                     Dashboard &rarr;
                   </a>
                 </li>
+
                 <li className="nav-item dropdown ms-lg-2">
                   <div className="d-flex align-items-center gap-2">
                     <div
                       className="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center fw-bold"
-                      style={{ width: "32px", height: "32px", fontSize: "14px" }}
+                      style={{
+                        width: "32px",
+                        height: "32px",
+                        fontSize: "14px",
+                      }}
                       title={user.email || user.username}
                     >
                       {getInitials(user.username)}

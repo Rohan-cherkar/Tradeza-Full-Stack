@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { API_URL } from "../config";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -44,11 +45,11 @@ const Login = () => {
     setLoading(true);
     try {
       const { data } = await axios.post(
-        "http://localhost:3000/login",
+        `${API_URL}/login`,
         {
           ...inputValue,
         },
-        { withCredentials: true }
+        { withCredentials: true },
       );
 
       const { success, message, user } = data;
@@ -69,7 +70,8 @@ const Login = () => {
     } catch (error) {
       console.error(error);
       handleError(
-        error.response?.data?.message || "Failed to login. Please check server."
+        error.response?.data?.message ||
+          "Failed to login. Please check server.",
       );
     } finally {
       setLoading(false);
@@ -82,7 +84,9 @@ const Login = () => {
         <div className="auth-logo-section">
           <img src="/logo.png" alt="Tradeza Logo" className="auth-logo" />
           <h2 className="auth-title">Login to Tradeza</h2>
-          <p className="auth-subtitle">Online trading and investment platform</p>
+          <p className="auth-subtitle">
+            Online trading and investment platform
+          </p>
         </div>
 
         <form onSubmit={handleSubmit} className="auth-form">
@@ -108,10 +112,9 @@ const Login = () => {
                 className="auth-link-subtle"
                 onClick={(e) => {
                   e.preventDefault();
-                  toast.info(
-                    "Password reset link will be sent to your email",
-                    { position: "top-center" }
-                  );
+                  toast.info("Password reset link will be sent to your email", {
+                    position: "top-center",
+                  });
                 }}
               >
                 Forgot password?
@@ -128,11 +131,7 @@ const Login = () => {
             />
           </div>
 
-          <button
-            type="submit"
-            className="auth-submit-btn"
-            disabled={loading}
-          >
+          <button type="submit" className="auth-submit-btn" disabled={loading}>
             {loading ? "Logging in..." : "Login"}
           </button>
 

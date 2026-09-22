@@ -11,6 +11,7 @@ import {
   MoreHoriz,
 } from "@mui/icons-material";
 import { DoughNutGraph } from "./DoughNutGraph";
+import { API_URL } from "../config";
 
 const labels = watchlist.map((stock) => stock.name);
 
@@ -129,7 +130,7 @@ const WatchListActions = ({ uid }) => {
 
   const handleBuyClick = async () => {
     try {
-      await axios.get("http://localhost:3000/auth/verify", {
+      await axios.get(`${API_URL}/auth/verify`, {
         withCredentials: true,
       });
       generalContext.openBuyWindow(uid); // logged in
